@@ -7,6 +7,7 @@ import 'package:skor_id_flutter/utils/theme/theme_text_style.dart';
 import 'package:skor_id_flutter/utils/widget/button_reload.dart';
 import 'package:skor_id_flutter/view/base_view.dart';
 import 'package:skor_id_flutter/view/contact/contact_controller.dart';
+import 'package:skor_id_flutter/view/contact/section/search_contact.dart';
 import 'package:skor_id_flutter/view/contact/widget/contact_list_item.dart';
 
 class ContactView extends StatelessWidget {
@@ -36,27 +37,30 @@ class ContactView extends StatelessWidget {
       ),
       child: Obx(() => Column(
           children: [
-            _contactCt.contactLoading.value ?
-            Center(
-              child: SizedBox(
-                width: 20.w, height: 20.w,
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(ThemeColor.primary),
+            SearchContact(),
+            Expanded(
+              child: _contactCt.contactLoading.value ?
+              Center(
+                child: SizedBox(
+                  width: 20.w, height: 20.w,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(ThemeColor.primary),
+                  ),
                 ),
+              ) :
+              _contactCt.contactList.isEmpty ?
+              Center(
+                child: ButtonReload(onTap: () => _contactCt.getContact(), content: 'Contact kosong, muat ulang?',),
+              ) :
+              ListView.separated(
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                itemBuilder: (_, index) => ContactListItem((_contactCt.searchContact.value == '' ? _contactCt.contactList : _contactCt.filteredContactList)[index]),
+                separatorBuilder: (_, __) => Divider(
+                  height: 1, color: ThemeColor.lightGrey4,
+                ),
+                itemCount: (_contactCt.searchContact.value == '' ? _contactCt.contactList : _contactCt.filteredContactList).length,
               ),
-            ) :
-            _contactCt.contactList.isEmpty ?
-            Center(
-              child: ButtonReload(onTap: () => _contactCt.getContact(), content: 'Contact kosong, muat ulang?',),
-            ) :
-            ListView.separated(
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              itemBuilder: (_, index) => ContactListItem(_contactCt.contactList[index]),
-              separatorBuilder: (_, __) => Divider(
-                height: 1, color: ThemeColor.lightGrey4,
-              ),
-              itemCount: _contactCt.contactList.length,
             )
           ],
         ),

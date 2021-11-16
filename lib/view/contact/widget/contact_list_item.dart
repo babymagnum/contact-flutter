@@ -13,7 +13,25 @@ class ContactListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(item.name ?? '', style: ThemeTextStyle.gothamRoundedRegular.apply(color: Colors.black87, fontSizeDelta: 14.sp),),
+        Expanded(
+          child: Text(item.name ?? '', style: ThemeTextStyle.gothamRoundedRegular.apply(color: Colors.black87, fontSizeDelta: 14.sp),),
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            reverse: true,
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: (item.labels ?? []).map((e) => Container(
+                padding: EdgeInsets.all(4.w),
+                decoration: BoxDecoration(
+                  color: Colors.black26,
+                  borderRadius: BorderRadius.circular(6)
+                ),
+                child: Text(e.title ?? '', style: ThemeTextStyle.gothamRoundedRegular.apply(color: Colors.white, fontSizeDelta: 12.sp),),
+              ).marginOnly(right: 6.w)).toList(),
+            ),
+          ),
+        )
       ],
     ).paddingSymmetric(vertical: 16.h);
   }
