@@ -61,10 +61,9 @@ class _BaseViewState extends State<BaseView> {
   @override
   Widget build(BuildContext context) {
     Widget _appBar = AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xfffafafa),
       centerTitle: widget.centerTitle,
-      brightness:
-          Get.isDarkMode ? Brightness.dark : Brightness.light,
+      brightness: Brightness.light,
       automaticallyImplyLeading: widget.automaticallyImplyLeading,
       title: widget.widgetAppbarTitle != null
           ? widget.widgetAppbarTitle
@@ -73,7 +72,7 @@ class _BaseViewState extends State<BaseView> {
               : Text(widget.appbarTitle ?? '',
                   style: ThemeTextStyle.gothamRoundedMedium
                       .apply(color: ThemeColor.black, fontSizeDelta: 16.sp)),
-      leading: widget.appbarLeading ??
+      leading: widget.widgetAppbarTitle != null ? null : widget.appbarLeading ??
           IconButton(
               icon: Icon(
                 Icons.arrow_back_rounded,
@@ -88,6 +87,7 @@ class _BaseViewState extends State<BaseView> {
     );
 
     return Scaffold(
+      backgroundColor: Color(0xfffafafa),
       appBar: widget.isUseAppbar ? _appBar as PreferredSizeWidget? : null,
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: widget.bottomNavigationBar,

@@ -27,14 +27,6 @@ class BaseService {
     return {'status': false, 'message': 'Connection Error!'};
   }
 
-  dynamic _checkResponse(dynamic response) {
-    return response.toString()[0] == '[' ? {
-      'status': true,
-      'message': 'sukses',
-      'data': (jsonDecode(response.toString()) as List).map((e) => e).toList()
-    } : response.toString();
-  }
-
   /// POST WITH FORM DATA
   Future<T> postFormData<T>(
       String url, FormData body, Map<String, String> headers) async {
@@ -48,7 +40,7 @@ class BaseService {
           data: body,
           options: Options(
               headers: headers, sendTimeout: 5000, receiveTimeout: 5000));
-      resultResponse = fromJson<T>(_checkResponse(response));
+      resultResponse = fromJson<T>(response.data);
     } on DioError catch (e) {
       if (commonController.notConnected.value) {
         resultResponse = fromJson<T>(_errorConnection);
@@ -73,7 +65,7 @@ class BaseService {
       var response = await dio.post(url,
           options: Options(
               headers: headers, sendTimeout: 5000, receiveTimeout: 5000));
-      resultResponse = fromJson<T>(_checkResponse(response));
+      resultResponse = fromJson<T>(response.data);
     } on DioError catch (e) {
       if (commonController.notConnected.value) {
         resultResponse = fromJson<T>(_errorConnection);
@@ -99,7 +91,7 @@ class BaseService {
           data: body,
           options: Options(
               headers: headers, sendTimeout: 5000, receiveTimeout: 5000));
-      resultResponse = fromJson<T>(_checkResponse(response));
+      resultResponse = fromJson<T>(response.data);
     } on DioError catch (e) {
       if (commonController.notConnected.value) {
         resultResponse = fromJson<T>(_errorConnection);
@@ -169,7 +161,7 @@ class BaseService {
           data: body,
           options: Options(
               headers: headers, sendTimeout: 5000, receiveTimeout: 5000));
-      resultResponse = fromJson<T>(_checkResponse(response));
+      resultResponse = fromJson<T>(response.data);
     } on DioError catch (e) {
       if (commonController.notConnected.value) {
         resultResponse = fromJson<T>(_errorConnection);
@@ -194,7 +186,7 @@ class BaseService {
       var response = await dio.delete(url,
           options: Options(
               headers: headers, sendTimeout: 5000, receiveTimeout: 5000));
-      resultResponse = fromJson<T>(_checkResponse(response));
+      resultResponse = fromJson<T>(response.data);
     } on DioError catch (e) {
       if (commonController.notConnected.value) {
         resultResponse = fromJson<T>(_errorConnection);

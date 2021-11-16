@@ -17,21 +17,25 @@ class ContactView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView(
       isUseAppbar: true,
-      appbarTitle: 'Manage Contact',
       centerTitle: true,
-      appbarLeading: GestureDetector(
-        onTap: () => print('labels'),
-        child: Text('Labels', style: ThemeTextStyle.gothamRoundedMedium.apply(color: Colors.pinkAccent, fontSizeDelta: 16.sp),),
+      isUseElevation: false,
+      widgetAppbarTitle: Row(
+        children: [
+          GestureDetector(
+            onTap: () => print('labels'),
+            child: Text('Labels', style: ThemeTextStyle.gothamRoundedRegular.apply(color: Colors.pinkAccent, fontSizeDelta: 16.sp),),
+          ),
+          Expanded(
+            child: Text('Manage Contact', textAlign: TextAlign.center, style: ThemeTextStyle.gothamRoundedMedium.apply(color: Colors.black, fontSizeDelta: 18.sp),),
+          ),
+          GestureDetector(
+            onTap: () => print('icon add'),
+            child: Icon(Icons.add, color: Colors.pinkAccent, size: 20.w,),
+          )
+        ],
       ),
-      appbarActions: [
-        GestureDetector(
-          onTap: () => print('icon add'),
-          child: Icon(Icons.add, color: Colors.pinkAccent, size: 20.w,),
-        )
-      ],
       child: Obx(() => Column(
           children: [
-            Text('manage contact'),
             _contactCt.contactLoading.value ?
             Center(
               child: SizedBox(
@@ -50,7 +54,7 @@ class ContactView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               itemBuilder: (_, index) => ContactListItem(_contactCt.contactList[index]),
               separatorBuilder: (_, __) => Divider(
-                height: 1, color: ThemeColor.lightGrey1,
+                height: 1, color: ThemeColor.lightGrey4,
               ),
               itemCount: _contactCt.contactList.length,
             )
