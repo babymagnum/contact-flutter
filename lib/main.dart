@@ -53,9 +53,6 @@ class _MyAppState extends State<MyApp> {
         title: commonController.appConfig.value.appName,
         navigatorKey: Get.key,
         initialRoute: Routes.CONTACT,
-        theme: Get.isDarkMode
-            ? commonController.lightTheme
-            : commonController.darkTheme,
         getPages: Routes.pages,
         debugShowCheckedModeBanner: false,
       ),

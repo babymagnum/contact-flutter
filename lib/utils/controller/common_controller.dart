@@ -8,14 +8,6 @@ class CommonController extends GetxController {
   var notConnected = false.obs;
   var appConfig = AppConfig.emptyAppConfig().obs;
 
-  ThemeData get darkTheme => ThemeData(
-        brightness: Brightness.dark,
-      );
-
-  ThemeData get lightTheme => ThemeData(
-        brightness: Brightness.light,
-      );
-
   late SharedPreferences preferences;
 
   initValue(AppConfig config) async {

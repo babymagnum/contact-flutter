@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:skor_id_flutter/utils/helper/routes.dart';
 import 'package:skor_id_flutter/utils/theme/theme_color.dart';
 import 'package:skor_id_flutter/utils/theme/theme_text_style.dart';
 import 'package:skor_id_flutter/utils/widget/button_reload.dart';
@@ -30,7 +31,7 @@ class ContactView extends StatelessWidget {
             child: Text('Manage Contact', textAlign: TextAlign.center, style: ThemeTextStyle.gothamRoundedMedium.apply(color: Colors.black, fontSizeDelta: 18.sp),),
           ),
           GestureDetector(
-            onTap: () => print('icon add'),
+            onTap: () => Get.toNamed(Routes.ADD_CONTACT),
             child: Icon(Icons.add, color: Colors.pinkAccent, size: 20.w,),
           )
         ],

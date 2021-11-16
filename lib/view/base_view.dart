@@ -76,7 +76,7 @@ class _BaseViewState extends State<BaseView> {
           IconButton(
               icon: Icon(
                 Icons.arrow_back_rounded,
-                color: ThemeColor.black,
+                color: Colors.pinkAccent,
                 size: 22.w,
               ),
               onPressed: () {

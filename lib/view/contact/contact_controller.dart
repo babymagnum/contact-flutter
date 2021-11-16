@@ -16,6 +16,10 @@ class ContactController extends GetxController {
     contactList(data);
   }
 
+  void addContact(ContactList contact) {
+    contactList.add(contact);
+  }
+
   void search(String value) {
     searchContact(value);
 
