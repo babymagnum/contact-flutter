@@ -202,10 +202,7 @@ class BaseService {
 
   /// Converter json to dart object
   static T fromJson<T>(dynamic json) {
-    if (json is Iterable) {
-      print('isIterable');
-      return _fromJsonList<T>(json as List<dynamic>) as T;
-    } else if (T == ContactList) {
+    if (T == ContactList) {
       return ContactList.fromJson(json) as T;
     } else {
       throw Exception(
