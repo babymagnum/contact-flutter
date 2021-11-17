@@ -35,9 +35,9 @@ class ContactController extends GetxController {
   }
 
   @override
-  void onInit() {
+  void onReady() {
     getContact();
 
-    super.onInit();
+    super.onReady();
   }
 }

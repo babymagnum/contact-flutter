@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,14 +54,16 @@ class ContactView extends StatelessWidget {
               Center(
                 child: ButtonReload(onTap: () => _contactCt.getContact(), content: 'Contact kosong, muat ulang?',),
               ) :
-              ListView.separated(
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                itemBuilder: (_, index) => ContactListItem((_contactCt.searchContact.value == '' ? _contactCt.contactList : _contactCt.filteredContactList)[index]),
-                separatorBuilder: (_, __) => Divider(
-                  height: 1, color: ThemeColor.lightGrey4,
+              CupertinoScrollbar(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  itemBuilder: (_, index) => ContactListItem((_contactCt.searchContact.value == '' ? _contactCt.contactList : _contactCt.filteredContactList)[index]),
+                  separatorBuilder: (_, __) => Divider(
+                    height: 1, color: ThemeColor.lightGrey4,
+                  ),
+                  itemCount: (_contactCt.searchContact.value == '' ? _contactCt.contactList : _contactCt.filteredContactList).length,
                 ),
-                itemCount: (_contactCt.searchContact.value == '' ? _contactCt.contactList : _contactCt.filteredContactList).length,
               ),
             )
           ],

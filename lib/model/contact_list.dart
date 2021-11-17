@@ -16,11 +16,6 @@ class ContactList {
       this.created, 
       this.labels});
 
-  @override
-  String toString() {
-    return 'ContactList{id: $id, name: $name, email: $email, phone: $phone, notes: $notes, created: $created, labels: ${labels?.map((e) => print(e.toString()))}}';
-  }
-
   ContactList.fromJson(dynamic json) {
     id = json["id"];
     name = json["name"];
@@ -59,11 +54,6 @@ class Labels {
   Labels({
       this.slug, 
       this.title});
-
-  @override
-  String toString() {
-    return 'Labels{slug: $slug, title: $title}';
-  }
 
   Labels.fromJson(dynamic json) {
     slug = json["slug"];

@@ -5,24 +5,21 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:skor_id_flutter/main.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:skor_id_flutter/model/contact_list.dart';
+import 'package:skor_id_flutter/model/app_config.dart';
 import 'package:skor_id_flutter/networking/service/http_service.dart';
+import 'package:skor_id_flutter/utils/controller/common_controller.dart';
 import 'package:skor_id_flutter/utils/helper/constant.dart';
-import 'package:skor_id_flutter/view/contact/contact_view.dart';
-import 'package:skor_id_flutter/view/contact/widget/contact_list_item.dart';
 
 void main() {
-  testWidgets('Data testing from internet', (WidgetTester tester) async {
-    var contactList = <ContactList>[];
+  test('Http request test', () async {
+    var commonCt = Get.put(CommonController());
 
-    for (Map<String, dynamic> json in Constant.exampleData) {
-      contactList.add(ContactList.fromJson(json));
-    }
-    
-    expect(contactList.length, 7);
-    expect(contactList[0].name, 'Andyanto Feng');
+    commonCt.appConfig(AppConfig(Constant.API_PRODUCTION, '', true));
+
+    final response = await HttpService().getContact();
+
+    expect(response.map((e) => e.toJson()).toList(), equals(Constant.exampleData));
   });
 }

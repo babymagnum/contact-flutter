@@ -12,8 +12,8 @@ class AddContactController extends GetxController {
 
   updateItem(ContactList value) => contact(value);
 
-  save() {
-    contact.value.labels = labels;
+  void save() {
+    if (labels.isNotEmpty) contact.value.labels = labels;
     contact(contact.value);
     _contactCt.addContact(contact.value);
 
@@ -22,6 +22,10 @@ class AddContactController extends GetxController {
     textEmailCt.clear();
     textPhoneCt.clear();
     textNotesCt.clear();
+
+    Get.back();
+
+    Get.snackbar('Contact Flutter', 'Berhasil menambahkan contact', snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(16.0));
   }
 
   addLabels(Labels label) {

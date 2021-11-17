@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:skor_id_flutter/model/contact_list.dart';
 import 'package:skor_id_flutter/utils/helper/constant.dart';
+import 'package:skor_id_flutter/utils/helper/dio_adapter_mock.dart';
 import '../../main.dart';
 
 class BaseService {
@@ -106,7 +107,7 @@ class BaseService {
   }
 
   /// GET
-  Future<T> get<T>(String url, Map<String, String> headers) async {
+  Future<T> get<T>({required String url, Map<String, String>? headers}) async {
     T resultResponse;
 
     try {
@@ -130,11 +131,12 @@ class BaseService {
     return resultResponse;
   }
 
-  Future<List<T>> getList<T>(String url, Map<String, String> headers) async {
+  Future<List<T>> getList<T>({required String url, Map<String, String>? headers, DioAdapterMock? mock}) async {
     List<T> resultResponse;
 
     try {
       final dio = Dio();
+      if (mock != null) dio.httpClientAdapter = mock;
       dio.interceptors
           .add(LogInterceptor(responseBody: true, requestBody: true));
       var response = await dio.get(url,
