@@ -6,26 +6,29 @@ import 'package:skor_id_flutter/view/contact/contact_controller.dart';
 class AddContactController extends GetxController {
   var contact = ContactList().obs;
   var labels = <Labels>[].obs;
-  var textLabelCt = TextEditingController(), textNameCt = TextEditingController(),
-  textEmailCt = TextEditingController(), textPhoneCt = TextEditingController(), textNotesCt = TextEditingController();
+  var textLabelCt = TextEditingController();
   ContactController _contactCt = Get.find();
 
   updateItem(ContactList value) => contact(value);
 
   void save() {
+    if ((contact.value.name ?? '') == '') {
+      Get.snackbar('Contact', 'Nama tidak boleh kosong', snackStyle: SnackStyle.FLOATING, snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(16));
+      return;
+    } else if ((contact.value.phone ?? '') == '') {
+      Get.snackbar('Contact', 'Nomor tidak boleh kosong', snackStyle: SnackStyle.FLOATING, snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(16));
+      return;
+    }
+
     if (labels.isNotEmpty) contact.value.labels = labels;
     contact(contact.value);
     _contactCt.addContact(contact.value);
 
     textLabelCt.clear();
-    textNameCt.clear();
-    textEmailCt.clear();
-    textPhoneCt.clear();
-    textNotesCt.clear();
 
     Get.back();
 
-    Get.snackbar('Contact Flutter', 'Berhasil menambahkan contact', snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(16.0));
+    Get.snackbar('Contact', 'Berhasil menambahkan contact', snackStyle: SnackStyle.FLOATING, snackPosition: SnackPosition.BOTTOM, margin: EdgeInsets.all(16.0));
   }
 
   addLabels(Labels label) {
@@ -44,10 +47,6 @@ class AddContactController extends GetxController {
   @override
   void onClose() {
     textLabelCt.dispose();
-    textNameCt.dispose();
-    textEmailCt.dispose();
-    textPhoneCt.dispose();
-    textNotesCt.dispose();
 
     super.onClose();
   }

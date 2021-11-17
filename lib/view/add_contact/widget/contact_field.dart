@@ -12,9 +12,8 @@ class ContactField extends StatelessWidget {
   final String label;
   final String hint;
   final bool isLabels;
-  final TextEditingController? textEditingController;
 
-  ContactField({required this.onChanged, required this.textInputType, required this.label, required this.hint, this.textEditingController, this.isLabels = false});
+  ContactField({required this.onChanged, required this.textInputType, required this.label, required this.hint, this.isLabels = false});
 
   AddContactController _addContactCt = Get.find();
 
@@ -102,11 +101,10 @@ class ContactField extends StatelessWidget {
         isLabels ?
         _fieldForLabels() :
         TextField(
-          controller: textEditingController,
           onChanged: (value) => onChanged(value.trim()),
           autocorrect: false,
           enableSuggestions: false,
-          keyboardType: TextInputType.text,
+          keyboardType: textInputType,
           textInputAction: TextInputAction.done,
           style: ThemeTextStyle.gothamRoundedRegular.apply(
               color: Colors.black54,

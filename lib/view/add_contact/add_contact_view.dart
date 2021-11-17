@@ -25,7 +25,6 @@ class AddContactView extends StatelessWidget {
                   Text('New Contact', style: ThemeTextStyle.gothamRoundedRegular.apply(color: Colors.black87, fontSizeDelta: 28.sp),),
                   SizedBox(height: 16.h,),
                   ContactField(
-                    textEditingController: _addContactCt.textNameCt,
                     onChanged: (value) {
                       _addContactCt.contact.value.name = value;
                       _addContactCt.updateItem(_addContactCt.contact.value);
@@ -36,7 +35,6 @@ class AddContactView extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h,),
                   ContactField(
-                    textEditingController: _addContactCt.textEmailCt,
                     onChanged: (value) {
                       _addContactCt.contact.value.email = value;
                       _addContactCt.updateItem(_addContactCt.contact.value);
@@ -47,7 +45,6 @@ class AddContactView extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h,),
                   ContactField(
-                    textEditingController: _addContactCt.textPhoneCt,
                     onChanged: (value) {
                       _addContactCt.contact.value.phone = value;
                       _addContactCt.updateItem(_addContactCt.contact.value);
@@ -58,7 +55,6 @@ class AddContactView extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h,),
                   ContactField(
-                    textEditingController: _addContactCt.textNotesCt,
                     onChanged: (value) {
                       _addContactCt.contact.value.notes = value;
                       _addContactCt.updateItem(_addContactCt.contact.value);

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="notification_channel_id" translatable="false">AAAAzYrDYiA:APA91bEiuulVMamGyjZ60ra-2FXkC0MlQQmu8VXkm4S9WzbABTVXijbb3HmAc7tWW9488YfeY63zsQO5uaSSdYZEM3w1Xmnmqe0WMSGrE0o4xhfmNBXJk3-wtwIy6NT0OSl6Jb0TTgGC</string>
-    <string name="notification_channel_name">Skor.id notification channel name</string>
-    <string name="notification_channel_desc">Skor.id notification channel description</string>
-    <string name="facebook_app_id">802018414037423</string>
-    <string name="fb_login_protocol_scheme">fb802018414037423</string>
-</resources>
